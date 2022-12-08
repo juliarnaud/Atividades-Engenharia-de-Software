@@ -1,0 +1,67 @@
+class book { 
+  constructor(title,description,author) {
+      this.title = title
+      this.description = description
+      this.author = author
+  }
+   
+}
+
+
+class library { 
+  constructor() {
+      this.books = []
+  }
+
+  addbook(outrob) {
+      let b = new book(outrob['title'],outrob['description'],outrob['author'])
+      this.books.push(b)
+      return b
+  }
+
+  getbooks() {
+      return this.books
+  }
+
+  removeBookById(id) {
+      let vet = []
+      
+      for (let i = 0; i <= this.books.length-1; i++) {
+        if (this.books[i].title !== id) {
+          vet.push(this.books[i]);
+        }
+      }
+      this.books = vet
+      return this.books
+    
+  }
+  
+  getBookById(id) {
+    for (let i = 0; i <= this.books.length -1; i++) { 
+      if (this.books[i].title === id) {
+        return this.books[i]
+      } 
+    }
+    return "O livro não foi encontrado"
+    
+  }
+  updateBookById(id,outrob) {
+    for (let i = 0; i <= this.books.length -1; i++) {
+      if (this.books[i].title === id) {
+        this.books[i].title = outrob["title"]
+        this.books[i].description = outrob["description"]
+        this.books[i].author = outrob["author"]
+        return this.books[i]
+      }
+    }
+  }
+}
+
+const library1 = new library
+library1.addbook({title:"O Diário de Anne Frank",description:"Relato",author:"Anne Frank"})
+library1.addbook({title:"Ensaio Sobre a Cegueira",description:"Fantasia",author:"José Saramago"})
+library1.addbook({title:"O Menino no Alto da Montanha", description:"História",author:"John Boyne"})
+console.log(library1.getbooks())
+library1.removeBookById("O Diário de Anne Frank")
+console.log(library1.getBookById("O Menino no Alto da Montanha"))
+console.log(library1.updateBookById('Ensaio Sobre a Cegueira',{title:'1984', description:'totalitarismo',author:'George Onwel'} ))
